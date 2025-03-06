@@ -1,9 +1,7 @@
-import { useState } from "react";
+import { LikeButton } from "./OptimisedLike";
+import { LikeButton2 } from "./NormalLike";
 
-import { LikeButton } from "./LikeButton";
-import { LikeButton2 } from "./LikeButton2";
-
-function Thread({ messages, sendMessage }) {
+export default function App() {
   return (
     <>
       <div
@@ -13,9 +11,8 @@ function Thread({ messages, sendMessage }) {
           alignItems: "center",
           gap: "20px",
           padding: "20px",
-          width: "100%",
-          height: "100%",
-          border: "1px solid red",
+          width: "100vw",
+          height: "100vh",
         }}
       >
         <LikeButton />
@@ -23,21 +20,4 @@ function Thread({ messages, sendMessage }) {
       </div>
     </>
   );
-}
-
-export default function App() {
-  const [messages, setMessages] = useState([
-    { text: "Hello there!", sending: false, key: 1 },
-  ]);
-
-  async function deliverMessage(message) {
-    await new Promise((res) => setTimeout(res, 1000));
-    return message;
-  }
-
-  async function sendMessage(formData) {
-    const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages((messages) => [...messages, { text: sentMessage }]);
-  }
-  return <Thread messages={messages} sendMessage={sendMessage} />;
 }

@@ -11,6 +11,7 @@ export function LikeButton() {
   );
 
   async function handleLike() {
+    if (isPending) return;
     toggleOptimisticLike(); // Instantly update UI
 
     startTransition(async () => {
@@ -27,8 +28,11 @@ export function LikeButton() {
   const style = getStyle(optimisticLiked);
 
   return (
-    <button onClick={handleLike} style={style}>
-      {optimisticLiked ? "Liked" : "Like"}
-    </button>
+    <div>
+      <p style={{ fontSize: "24px" }}>Optimised</p>
+      <button style={style} onClick={handleLike}>
+        {optimisticLiked ? "Liked" : "Like"}
+      </button>
+    </div>
   );
 }

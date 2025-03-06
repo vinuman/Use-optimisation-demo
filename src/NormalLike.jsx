@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getStyle } from "./utils";
 
 export function LikeButton2() {
   const [liked, setLiked] = useState(false);
@@ -17,21 +18,14 @@ export function LikeButton2() {
     }
   }
 
+  const style = getStyle(liked);
+
   return (
-    <button
-      onClick={handleLike}
-      disabled={isPending}
-      style={{
-        background: liked ? "blue" : "gray",
-        color: "white",
-        padding: "10px 20px",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer",
-        opacity: isPending ? 0.5 : 1,
-      }}
-    >
-      {liked ? "Liked" : "Like"}
-    </button>
+    <div>
+      <p style={{ fontSize: "24px" }}>Normal</p>
+      <button onClick={handleLike} disabled={isPending} style={style}>
+        {liked ? "Liked" : "Like"}
+      </button>
+    </div>
   );
 }
